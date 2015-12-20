@@ -10,4 +10,31 @@ body {
 }
 
 .game {
+    width: 600px;
+    height: 480px;
+    margin: 40px auto;
+    border: 1px dashed #666;
+    padding: 12px;
+}
+
+.game>h2 {
+    border-bottom: 1px dashed #666;
+    padding: 6px 4px;
+    margin-bottom: 12px;
+}
+
+.location ul {
+    list-style-type: square;
+    list-style-position: inside;
+    padding: 10px;
+    margin-left: 10px;
+}
+
+.item {
+    color: orangered;
+    cursor: pointer;
+}
+
+.pickable {
+    color: yellowgreen;
 }
