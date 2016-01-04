@@ -17,7 +17,7 @@ body {
     padding: 12px;
 }
 
-.game>h2 {
+.game > h2 {
     border-bottom: 1px dashed #666;
     padding: 6px 4px;
     margin-bottom: 12px;
@@ -30,11 +30,46 @@ body {
     margin-left: 10px;
 }
 
+.box {
+    padding: 6px 4px;
+    margin: 6px 0;
+}
+
+.console {
+    position: relative;
+    background-color: #222;
+    min-height: 8em;
+}
+
+.invisible {
+    position: absolute;
+    font-size: 2em;
+    opacity: 0.08;
+}
+
+.inventory > h2 {
+    padding: 6px 4px;
+    margin-bottom: 4px;
+    border-top: 1px dashed #666;
+    border-bottom: 1px dashed #666;
+}
+
+.inventory .items {
+    min-height: 7em;
+}
+
 .item {
     color: orangered;
-    cursor: pointer;
+    cursor: default;
+    display: inline-block;
 }
 
 .pickable {
     color: yellowgreen;
+    cursor: pointer;
+}
+
+.draggedOver {
+    color: gold;
+    cursor: pointer;
 }
