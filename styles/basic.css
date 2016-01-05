@@ -49,13 +49,18 @@ body {
 
 .inventory > h2 {
     padding: 6px 4px;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     border-top: 1px dashed #666;
     border-bottom: 1px dashed #666;
 }
 
 .inventory .items {
     min-height: 7em;
+    padding: 0 8px;
+}
+
+.inventory .draggedOver {
+    background-color: #444;
 }
 
 .item {
@@ -69,7 +74,7 @@ body {
     cursor: pointer;
 }
 
-.draggedOver {
+.item .draggedOver {
     color: gold;
     cursor: pointer;
 }

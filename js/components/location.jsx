@@ -4,8 +4,8 @@ var React = require('react'),
 module.exports = React.createClass({
     render: function () {
         return <div className='location'>
-            This is a description of a location with some <Item label='key' canPick /> and another random <Item label='item' canPick />.
-            These items can be picked up, but there is also a stationary <Item label='door' /> with a <Item label='padlock' /> on it.
+            This is a description of a location with some <Item id='padlock_key' /> and another random <Item id='item' />.
+            These items can be picked up, but there is also a stationary <Item id='door' /> with a <Item id='padlock' /> on it.
             You can try using items from your inventory on these and see what happens.
             The door is facing north, but there is also an exit to the east.
             <ul>

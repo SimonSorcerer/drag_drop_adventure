@@ -1,6 +1,7 @@
 var React = require('react'),
-    ClassHelper = require('../helpers/class.js');
-
+    ItemManager = require('../managers/item'),
+    ClassHelper = require('../helpers/class');
+    
 module.exports = React.createClass({
     getInitialState: function () {
         return { 
@@ -15,6 +16,7 @@ module.exports = React.createClass({
         //console.log('dragging');
     },
     handleDragStart: function (e) {
+        e.dataTransfer.setData("text/plain", this.props.id);
         this.setState({ draggedElement: e.target });
         //console.warn('drag starts!');
     },
@@ -36,9 +38,11 @@ module.exports = React.createClass({
         //console.error('dropped on valid target');
     },
     render: function () {
-        var classHelper = ClassHelper.build(['item']);
+        var itemManager = ItemManager.build(),
+            classHelper = ClassHelper.build(['item']),
+            item = itemManager.get(this.props.id);
         
-        if (this.props.canPick) {
+        if (item.canPick) {
             classHelper.add('pickable');
         }
         
@@ -48,11 +52,11 @@ module.exports = React.createClass({
             classHelper.remove('draggedOver');
         }
         
-        return <span className={ classHelper.toString() } draggable={ this.props.canPick ? true : false } 
+        return <span className={ classHelper.toString() } draggable={ item.canPick ? true : false } 
                     onDrag={ this.handleDrag } onDragStart={ this.handleDragStart } onDragEnd={ this.handleDragEnd }
                     onDragEnter={ this.handleDragEnter } onDragLeave={ this.handleDragLeave }
                     onDrop={ this.handleDrop }>
-                    { this.props.label }
+                    { item.label }
                </span>;
     }
 });

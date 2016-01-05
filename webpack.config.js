@@ -23,7 +23,7 @@ module.exports = {
     resolve: {
         alias: {
             'components': './components'
-        }  
+        }
     },
     externals: {
         //'react': 'React'
