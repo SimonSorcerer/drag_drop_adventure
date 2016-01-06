@@ -10,6 +10,8 @@ module.exports = React.createClass({
         };
     },
     isOverItself: function (e) {
+        //console.log('e.target: ' + e.target);
+        //console.log('this.state.draggedElement: ' + this.state.draggedElement);
         return e.target === this.state.draggedElement;
     },
     handleDrag: function (e) {
@@ -35,6 +37,7 @@ module.exports = React.createClass({
         //console.warn('left valid drag target');
     },
     handleDrop: function (e) {
+        this.setState({ draggedOver: false });
         //console.error('dropped on valid target');
     },
     render: function () {

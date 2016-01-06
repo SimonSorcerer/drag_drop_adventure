@@ -1,4 +1,5 @@
 var React = require('react'),
+    Item = require('./item.jsx'),
     ItemManager = require('../managers/item'),
     ClassHelper = require('../helpers/class');
 
@@ -9,7 +10,7 @@ module.exports = React.createClass({
             draggedOver: false
         };
     },
-    handleDragEnter: function (e) {
+    handleDragOver: function (e) {
         this.setState({ draggedOver: true });
     },
     handleDragLeave: function (e) {
@@ -28,13 +29,13 @@ module.exports = React.createClass({
     writeContent: function () {
         var items = this.state.items,
             itemManager = ItemManager.build(),
-            content = '';
+            content = [];
         
         for (var i = 0; i < items.length; i++) {
-            content += itemManager.get(items[i]).label + ', '
+            content.push(<Item key={ items[i] } id={ items[i] } />);
         }
         
-        return content.slice(0, -2);
+        return content;
     },
     render: function () {
         var classHelper = ClassHelper.build(['items']),
@@ -46,7 +47,7 @@ module.exports = React.createClass({
         
         return <div onDrop={ this.handleDrop } className="box inventory">
             <h2>Your inventory:</h2>
-            <div onDragEnter={ this.handleDragEnter } 
+            <div onDragOver={ this.handleDragOver } 
                 onDragLeave={ this.handleDragLeave } 
                 className={ classHelper.toString() }>
                 { this.writeContent() }

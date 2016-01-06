@@ -56,10 +56,24 @@ body {
 
 .inventory .items {
     min-height: 7em;
-    padding: 0 8px;
+    padding: 0 4px;
 }
 
-.inventory .draggedOver {
+.inventory .item {
+    margin: 0 2px;
+}
+
+.inventory .item:before {
+    content: "[ ";
+    color: #666;
+}
+
+.inventory .item:after {
+    content: " ]";
+    color: #666;
+}
+
+.inventory > .draggedOver {
     background-color: #444;
 }
 
@@ -74,7 +88,6 @@ body {
     cursor: pointer;
 }
 
-.item .draggedOver {
+.item.draggedOver, .pickable.draggedOver {
     color: gold;
-    cursor: pointer;
 }

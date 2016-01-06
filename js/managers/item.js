@@ -2,6 +2,7 @@ function ItemManager() {
     var cache = {
         padlock_key: {
             label: 'key',
+            description: 'Small simple brass key.',
             canPick: true
         },
         item: {
@@ -9,7 +10,8 @@ function ItemManager() {
             canPick: true
         },
         padlock: {
-            label: 'padlock'
+            label: 'padlock',
+            description: 'Very simple but sturdy padlock.'
         },
         door: {
             label: 'door'
