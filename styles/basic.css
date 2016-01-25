@@ -38,13 +38,16 @@ body {
 .console {
     position: relative;
     background-color: #222;
-    min-height: 8em;
+    line-height: 1.4em;
+    height: 1.4em;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: gold;
+    opacity: 0.9;
 }
 
-.invisible {
-    position: absolute;
-    font-size: 2em;
-    opacity: 0.08;
+.message {
+    border-bottom: 1px dashed #333;
 }
 
 .inventory > h2 {
@@ -81,6 +84,10 @@ body {
     color: orangered;
     cursor: default;
     display: inline-block;
+}
+
+.item:hover {
+    color: gold;
 }
 
 .pickable {

@@ -1,51 +1,63 @@
 var React = require('react'),
     ItemManager = require('../managers/item'),
+    EventBus = require('../managers/bus'),
     ClassHelper = require('../helpers/class');
     
 module.exports = React.createClass({
     getInitialState: function () {
+        var itemManager = ItemManager.build();
+            
         return { 
             draggedOver: false,
-            draggedElement: null
+            draggedElement: null,
+            item:  itemManager.get(this.props.id)
         };
     },
     isOverItself: function (e) {
-        //console.log('e.target: ' + e.target);
-        //console.log('this.state.draggedElement: ' + this.state.draggedElement);
         return e.target === this.state.draggedElement;
     },
-    handleDrag: function (e) {
-        //console.log('dragging');
-    },
     handleDragStart: function (e) {
-        e.dataTransfer.setData("text/plain", this.props.id);
+        e.dataTransfer.setData('text/plain', this.props.id);
+
         this.setState({ draggedElement: e.target });
-        //console.warn('drag starts!');
     },
     handleDragEnd: function (e) {
         this.setState({ draggedOver: false });
-        //console.warn('drag ends!');
     },
     handleDragEnter: function (e) {
+        var eventBus = EventBus.build();
+        
+        console.log('count: ' + e.dataTransfer.items.length);
+        
         if (!this.isOverItself(e)) {
             this.setState({ draggedOver: true });
+            eventBus.publish(EventBus.types.console, 'Use ' + e.dataTransfer.getData('text/plain') + ' with ' + this.state.item.label);
+        } else {
+            eventBus.publish(EventBus.types.console, 'Use ' + this.state.item.label + ' with ');
         }
-        //console.warn('you have entered area over valid drag target');
     },
     handleDragLeave: function (e) {
         this.setState({ draggedOver: false });
-        //console.warn('left valid drag target');
     },
     handleDrop: function (e) {
         this.setState({ draggedOver: false });
-        //console.error('dropped on valid target');
+    },
+    handleMouseEnter: function (e) {
+        var eventBus = EventBus.build();
+        
+        if (!this.state.draggedOver) {
+            eventBus.publish(EventBus.types.console, 'Look at ' + this.state.item.label);
+        }
+    },
+    handleMouseLeave: function (e) {
+        var eventBus = EventBus.build();
+        
+        eventBus.publish(EventBus.types.console, '');
     },
     render: function () {
-        var itemManager = ItemManager.build(),
-            classHelper = ClassHelper.build(['item']),
-            item = itemManager.get(this.props.id);
+        var classHelper = ClassHelper.build(['item']);
         
-        if (item.canPick) {
+        if (this.state.item.canPick) {
             classHelper.add('pickable');
         }
         
@@ -55,11 +67,11 @@ module.exports = React.createClass({
             classHelper.remove('draggedOver');
         }
         
-        return <span className={ classHelper.toString() } draggable={ item.canPick ? true : false } 
+        return <span className={ classHelper.toString() } draggable={ this.state.item.canPick ? true : false } 
                     onDrag={ this.handleDrag } onDragStart={ this.handleDragStart } onDragEnd={ this.handleDragEnd }
                     onDragEnter={ this.handleDragEnter } onDragLeave={ this.handleDragLeave }
-                    onDrop={ this.handleDrop }>
-                    { item.label }
+                    onDrop={ this.handleDrop } onMouseEnter={ this.handleMouseEnter } onMouseLeave={ this.handleMouseLeave }>
+                    { this.state.item.label }
                </span>;
     }
 });
