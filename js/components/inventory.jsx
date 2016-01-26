@@ -1,6 +1,8 @@
 var React = require('react'),
     Item = require('./item.jsx'),
-    ItemManager = require('../managers/item'),
+    dragManager = require('../managers/drag'),
+    itemManager = require('../managers/item'),
+    eventBus = require('../managers/bus'),
     ClassHelper = require('../helpers/class');
 
 module.exports = React.createClass({
@@ -13,22 +15,26 @@ module.exports = React.createClass({
     handleDragOver: function (e) {
         this.setState({ draggedOver: true });
     },
+    handleDragEnter: function (e) {
+        dragManager.inventory.enter();
+    },
     handleDragLeave: function (e) {
+        dragManager.inventory.leave();
         this.setState({ draggedOver: false });
     },
     handleDrop: function (e) {
-        var key = e.dataTransfer.getData("text/plain"),
+        var key = dragManager.dragged.id,
             items = this.state.items;
         
         if (items.indexOf(key) === -1) {
             items.push(key);
         }
         
+        dragManager.dragged.clear();
         this.setState({ draggedOver: false });
     },
     writeContent: function () {
         var items = this.state.items,
-            itemManager = ItemManager.build(),
             content = [];
         
         for (var i = 0; i < items.length; i++) {
@@ -48,6 +54,7 @@ module.exports = React.createClass({
         return <div onDrop={ this.handleDrop } className="box inventory">
             <h2>Your inventory:</h2>
             <div onDragOver={ this.handleDragOver } 
+                onDragEnter={ this.handleDragEnter }
                 onDragLeave={ this.handleDragLeave } 
                 className={ classHelper.toString() }>
                 { this.writeContent() }
