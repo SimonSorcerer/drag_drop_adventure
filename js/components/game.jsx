@@ -6,7 +6,6 @@ var React = require('react'),
 module.exports = React.createClass({
     handleDragOver: function (e) {
         e.preventDefault();
-        //console.warn('dragging over valid drag target');
     },
     render: function () {
         return <div onDragOver={ this.handleDragOver } className="game">
