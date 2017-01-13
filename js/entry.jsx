@@ -1,10 +1,8 @@
-'use strict';
+import '../styles/reset.css';
+import '../styles/basic.css';
 
-require("../styles/reset.css");
-require("../styles/basic.css");
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Game from 'components/game.jsx';
 
-var React = require('react'),
-    ReactDOM = require('react-dom'),
-    Game = require('components/game.jsx');
-    
 ReactDOM.render(<Game />, document.getElementById('dda-main'));

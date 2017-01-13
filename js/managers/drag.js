@@ -1,23 +1,36 @@
-var eventBus = require('./bus'),
-    itemManager = require('./item'),
-    manager;
-    
+import { publish, eventTypes } from './bus';
+import { getItem } from './item';
+
+export const dragged = createIdHolder();
+export const draggedOver = createIdHolder();
+export const inventory = {
+    isOver: false,
+    enter: function() {
+        this.isOver = true;
+        signalConsole();
+    },
+    leave: function() {
+        this.isOver = false;
+        signalConsole();
+    }
+};
+
 function signalConsole() {
-    var overInventory = manager.inventory.isOver,
-        draggingItem = manager.dragged.id,
-        overItem = manager.draggedOver.id;
-        
+    var overInventory = inventory.isOver,
+        draggingItem = dragged.id,
+        overItem = draggedOver.id;
+
     if (draggingItem && overItem && draggingItem !== overItem) {
-        eventBus.publish(eventBus.types.console, 'Use ' + itemManager.get(draggingItem).label + ' with ' + itemManager.get(overItem).label);
-    } 
+        publish(eventTypes.console, 'Use ' + getItem(draggingItem).label + ' with ' + getItem(overItem).label);
+    }
     if (draggingItem && !overItem && overInventory) {
-        eventBus.publish(eventBus.types.console, 'Pick up ' + itemManager.get(draggingItem).label);
+        publish(eventTypes.console, 'Pick up ' + getItem(draggingItem).label);
     }
     if (draggingItem && !overItem && !overInventory) {
-        eventBus.publish(eventBus.types.console, 'Use ' + itemManager.get(draggingItem).label + ' with ...');
+        publish(eventTypes.console, 'Use ' + getItem(draggingItem).label + ' with ...');
     }
     if (!draggingItem) {
-        eventBus.publish(eventBus.types.console, '');
+        publish(eventTypes.console, '');
     }
 }
 
@@ -34,21 +47,3 @@ function createIdHolder() {
         }
     }
 }
-
-manager = {
-    dragged: createIdHolder(),
-    draggedOver: createIdHolder(),
-    inventory: {
-        isOver: false,
-        enter: function() {
-            this.isOver = true;
-            signalConsole();
-        },
-        leave: function() {
-            this.isOver = false;
-            signalConsole();
-        }
-    }
-};
-
-module.exports = manager; 

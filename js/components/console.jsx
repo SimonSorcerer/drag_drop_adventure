@@ -1,26 +1,27 @@
-var React = require('react'),
-    eventBus = require('../managers/bus');
-    
-module.exports = React.createClass({
-    registerToBus: function () {
-        eventBus.register(eventBus.types.console, this.write);
-    },
-    getInitialState: function () {
-        this.registerToBus();
-        
-        return {
+import React                    from 'react';
+import { register, eventTypes } from '../managers/bus';
+
+export default class Console extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
             message: ''
-        }
-    },
-    write: function (message) {
+        };
+        register(eventTypes.console, this.write.bind(this));
+    }
+
+    write(message) {
         this.setState({ message: message });
-    },
-    clear: function () {
+    }
+
+    clear() {
         this.setState({ message: '' })
-    },
-    render: function () {
+    }
+
+    render() {
         return <div className='box console'>
             { this.state.message }
         </div>;
     }
-});
+}

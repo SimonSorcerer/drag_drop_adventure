@@ -1,6 +1,6 @@
-var React = require('react'),
-    Item = require('./item.jsx');
-    
+import React from 'react';
+import Item  from './item.jsx';
+
 module.exports = React.createClass({
     render: function () {
         return <div className='location'>
