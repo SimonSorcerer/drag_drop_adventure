@@ -98,3 +98,11 @@ body {
 .item.draggedOver, .pickable.draggedOver {
     color: gold;
 }
+
+.description {
+    border-top: 1px dashed #666;
+}
+
+.description.minimized {
+    display: none;
+}

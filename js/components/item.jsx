@@ -61,6 +61,10 @@ export default class Item extends React.Component {
         publish(eventTypes.console, '');
     }
 
+    handleClick(e) {
+        publish(eventTypes.description, { id: this.props.id });
+    }
+
     render() {
         var classHelper = ClassHelper.build(['item']);
 
@@ -77,7 +81,8 @@ export default class Item extends React.Component {
         return <span className={ classHelper.toString() } draggable={ this.state.item.canPick ? true : false }
                     onDragStart={ this.handleDragStart.bind(this) } onDragEnd={ this.handleDragEnd.bind(this) } onDragEnter={ this.handleDragEnter.bind(this) }
                     onDragLeave={ this.handleDragLeave.bind(this) } onDrop={ this.handleDrop.bind(this) }
-                    onMouseEnter={ this.handleMouseEnter.bind(this) } onMouseLeave={ this.handleMouseLeave.bind(this) }>
+                    onMouseEnter={ this.handleMouseEnter.bind(this) } onMouseLeave={ this.handleMouseLeave.bind(this) }
+                    onClick={ this.handleClick.bind(this) }>
                     { this.state.item.label }
                </span>;
     }

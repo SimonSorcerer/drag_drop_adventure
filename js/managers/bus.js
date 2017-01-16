@@ -29,5 +29,6 @@ export function publish(event, payload) {
 }
 
 export const eventTypes = {
-    console: 'console'
+    console: 'console',
+    description: 'description'
 }
