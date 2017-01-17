@@ -100,9 +100,19 @@ body {
 }
 
 .description {
+    min-height: 1em;
+    max-height: 8em;
+    overflow: hidden;
     border-top: 1px dashed #666;
+    transition: height 2s linear;
 }
 
 .description.minimized {
-    display: none;
+    height: 0;
+    transition: height 2s linear;
+}
+
+.record {
+    padding-top: 4px;
+    padding-bottom: 4px;
 }

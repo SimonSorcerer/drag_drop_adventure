@@ -62,7 +62,7 @@ export default class Item extends React.Component {
     }
 
     handleClick(e) {
-        publish(eventTypes.description, { id: this.props.id });
+        publish(eventTypes.description, { item: this.state.item });
     }
 
     render() {

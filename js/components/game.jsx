@@ -11,7 +11,6 @@ export default class Game extends React.Component {
 
     render() {
         return <div onDragOver={ this.handleDragOver.bind(this) } className='game'>
-            <h2>Hello this is drag and drop game prototype!</h2>
             <Location />
             <Description />
             <Console />

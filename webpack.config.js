@@ -5,17 +5,17 @@ module.exports = {
     },
     module: {
         loaders: [
-            { 
+            {
                 test: /\.css$/,
-                include: /styles/, 
-                loader: 'style!css' 
+                include: /styles/,
+                loader: 'style!css'
             },
             {
                 test: /\.jsx?$/,
                 include: /js/,
                 loader: 'babel',
                 query: {
-                    presets: ['react', 'es2015']
+                    presets: ['react', 'es2015', 'babel-preset-stage-2']
                 }
             },
             {

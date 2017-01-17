@@ -13,7 +13,8 @@
         "description": "Very simple but sturdy padlock."
     },
     "door": {
-        "label": "door"
+        "label": "door",
+        "description": "At the end of the room in a very corner there is a mysterious door glowing with bright green color."
     },
     "passport": {
         "label": "passport",

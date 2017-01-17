@@ -1,5 +1,4 @@
 import React                    from 'react';
-import { getItem }              from '../managers/item';
 import { register, eventTypes } from '../managers/bus';
 
 export default class Description extends React.Component {
@@ -7,36 +6,32 @@ export default class Description extends React.Component {
         super(props);
 
         this.state = {
-            minimized: true,
-            itemId: null
+            memory: []
         };
 
         register(eventTypes.description, (payload) => {
-            if (payload.id) {
-                this.setState({ itemId: payload.id, minimized: false });
-            }
+            this.addRecord(payload.item);
         });
     }
 
-    getDescription(itemId) {
-        const item = getItem(itemId);
-
-        if (item) {
-            return item.description;
+    addRecord(item) {
+        if (item && item.description) {
+            this.setState({
+                memory: [item.description, ...this.state.memory]
+            });
         }
-        return '';
     }
 
     render() {
         const className = 'box description' + (this.state.minimized ? ' minimized' : '');
-        let description = '';
+        let records = [];
 
-        if (this.state.itemId) {
-            description = this.getDescription(this.state.itemId);
+        for (let record of this.state.memory) {
+            records.push(<div className='record' key={ records.length }>{ record }</div>);
         }
 
         return <div className={ className }>
-            { description }
+            { records }
         </div>;
     }
 }
