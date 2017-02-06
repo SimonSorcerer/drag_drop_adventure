@@ -1,45 +1,10 @@
-import React            from 'react';
-import Item             from './item.jsx';
-import * as dragManager from '../managers/drag';
-import ClassHelper      from '../helpers/class';
+import { Component } from 'react';
+import Item          from './item.jsx';
+import ClassHelper   from '../helpers/class';
 
-export default class Inventory extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            items: ['passport'],
-            draggedOver: false
-        };
-    }
-
-    handleDragOver(e) {
-        this.setState({ draggedOver: true });
-    }
-
-    handleDragEnter(e) {
-        dragManager.inventory.enter();
-    }
-
-    handleDragLeave(e) {
-        dragManager.inventory.leave();
-        this.setState({ draggedOver: false });
-    }
-
-    handleDrop(e) {
-        var key = dragManager.dragged.id,
-            items = this.state.items;
-
-        if (items.indexOf(key) === -1) {
-            items.push(key);
-        }
-
-        dragManager.dragged.clear();
-        this.setState({ draggedOver: false });
-    }
-
+export default class Inventory extends Component {
     writeContent() {
-        var items = this.state.items,
+        var items = this.props.items,
             content = [];
 
         for (var i = 0; i < items.length; i++) {
@@ -50,19 +15,17 @@ export default class Inventory extends React.Component {
     }
 
     render() {
-        var classHelper = ClassHelper.build(['items']),
-            content = '';
+        var classHelper = ClassHelper.build(['items']);
 
-        if (this.state.draggedOver) {
+        if (this.props.draggedOver) {
             classHelper.add('draggedOver');
         }
 
-        return <div onDrop={ this.handleDrop.bind(this) } className='box inventory'>
+        return <div onDrop={ this.props.handleDrop.bind(this) } className='box inventory'>
             <h2>Your inventory:</h2>
-            <div onDragOver={ this.handleDragOver.bind(this) }
-                onDragEnter={ this.handleDragEnter.bind(this) }
-                onDragLeave={ this.handleDragLeave.bind(this) }
-                className={ classHelper.toString() }>
+            <div className={ classHelper.toString() }
+                onDragEnter={ this.props.handleDragEnter.bind(this) }
+                onDragLeave={ this.props.handleDragLeave.bind(this) }>
                 { this.writeContent() }
             </div>
         </div>;
