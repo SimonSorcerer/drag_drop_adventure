@@ -1,5 +1,4 @@
 import React, { Component }     from 'react';
-import { register, eventTypes } from '../managers/bus';
 
 export default class Console extends Component {
     render() {
