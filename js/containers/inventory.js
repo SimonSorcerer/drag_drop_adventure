@@ -6,7 +6,8 @@ import { getItem }        from '../managers/item'
 const mapStateToProps = (state, ownProps) => {
     return {
         items: state.inventory.items,
-        draggedOver: state.inventory.draggedOver
+        draggedOver: state.inventory.isDraggedOver,
+        draggedItem: state.drag.draggedItem
     }
 }
 
@@ -18,8 +19,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         handleDragLeave: () => {
             dispatch(actions.stopDragOver());
         },
-        handleDrop: (itemId) => {
-            dispatch(actions.dropItem(itemId));
+        handleDrop: (id) => {
+            dispatch(actions.dropItem(id));
         }
     }
 }

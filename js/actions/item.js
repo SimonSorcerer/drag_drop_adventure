@@ -13,21 +13,21 @@ export const stopDragging = () => {
 
 export const startDragOver = (id) => {
     return {
-        type: 'START_DRAGGING_OVER',
+        type: 'START_DRAGGING_OVER_ITEM',
         id
     }
 }
 
 export const stopDragOver = () => {
     return {
-        type: 'STOP_DRAGGING_OVER'
+        type: 'STOP_DRAGGING_OVER_ITEM'
     }
 }
 
-export const startHover = (label) => {
+export const startHover = (id) => {
     return {
         type: 'START_HOVER',
-        label
+        id
     }
 }
 
@@ -37,10 +37,10 @@ export const stopHover = () => {
     }
 }
 
-export const examine = (item) => {
+export const examine = (description) => {
     return {
         type: 'EXAMINE_ITEM',
-        item
+        description
     }
 }
 

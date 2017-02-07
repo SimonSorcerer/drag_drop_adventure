@@ -18,7 +18,7 @@ const inventoryReducers = (state = defaultState, action) => {
         case 'DROP_ITEM':
             return {
                 ...state,
-                items: items.add(action.id),
+                items: state.items.add(action.id),
                 isDraggedOver: false
             }
         default:

@@ -1,5 +1,6 @@
 const defaultState = {
-    memory: []
+    memory: [],
+    hoveredItem: null
 }
 
 const gameReducers = (state = defaultState, action) => {
@@ -7,14 +8,14 @@ const gameReducers = (state = defaultState, action) => {
         case 'START_HOVER':
             return {
                 ...state,
-                console: action.id
+                hoveredItem: action.id
             }
         case 'STOP_HOVER':
             return {
                 ...state,
-                console: null
+                hoveredItem: null
             }
-        case 'EXAMINE':
+        case 'EXAMINE_ITEM':
             if (action.description) {
                 return {
                     ...state,

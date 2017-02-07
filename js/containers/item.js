@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         draggedOver: state.drag.draggedOverItem === ownProps.id,
         isOverItself: state.drag.draggedOverItem === state.drag.draggedItem === ownProps.id,
-        canBePicked: item.canBePicked,
+        canBePicked: item.canPick,
         label: item.label
     }
 }
