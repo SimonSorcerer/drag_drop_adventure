@@ -1,9 +1,9 @@
-import { Component }                   from 'react';
-import ClassHelper             from '../helpers/class';
+import React, { Component } from 'react';
+import ClassHelper          from '../helpers/class';
 
 export default class Item extends Component {
     render() {
-        var classHelper = ClassHelper.build(['item']);
+        const classHelper = ClassHelper.build(['item']);
 
         if (this.props.canBePicked) {
             classHelper.add('pickable');
@@ -22,7 +22,7 @@ export default class Item extends Component {
                     onMouseEnter={ this.props.handleMouseEnter.bind(this) }
                     onMouseLeave={ this.props.handleMouseLeave.bind(this) }
                     onClick={ this.props.handleClick.bind(this) }>
-                    { this.props.item.label }
+                    { this.props.label }
                </span>;
     }
 }

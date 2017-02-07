@@ -2,25 +2,26 @@ const defaultState = {
     memory: []
 }
 
-const gameReducers = (state = {}, action) => {
-    state = state || defaultState;
-
+const gameReducers = (state = defaultState, action) => {
     switch (action.type) {
         case 'START_HOVER':
             return {
                 ...state,
-                hoveredItem: action.id
+                console: action.id
             }
         case 'STOP_HOVER':
             return {
                 ...state,
-                hoveredItem: null
+                console: null
             }
         case 'EXAMINE':
-            return {
-                ...state,
-                memory: [item.description, ...state.memory]
+            if (action.description) {
+                return {
+                    ...state,
+                    memory: [action.description, ...state.memory]
+                }
             }
+            return state
         default:
             return state
     }

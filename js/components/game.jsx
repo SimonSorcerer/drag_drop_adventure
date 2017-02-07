@@ -1,8 +1,8 @@
 import React       from 'react';
-import Console     from './console.jsx';
-import Inventory   from './inventory.jsx';
+import Console     from '../containers/console';
+import Inventory   from '../containers/inventory';
 import Location    from './location.jsx';
-import Description from './description.jsx';
+import Description from '../containers/description';
 
 export default class Game extends React.Component {
     handleDragOver(e) {

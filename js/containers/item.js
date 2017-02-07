@@ -1,26 +1,31 @@
 import { connect }   from 'react-redux';
 import { getItem }   from '../managers/item';
 import actions       from '../actions/item'
-import ItemComponent from '../components/item';
+import ItemComponent from '../components/item.jsx';
 
 const mapStateToProps = (state, ownProps) => {
+    const item = getItem(ownProps.id);
+
     return {
-        draggedOver: state.draggedOverItem === this.ownProps.id,
-        isOverItself: state.draggedOverItem === state.draggedItem === this.ownProps.id,
-        canBePicked: this.ownProps.item.canBePicked
+        draggedOver: state.drag.draggedOverItem === ownProps.id,
+        isOverItself: state.drag.draggedOverItem === state.drag.draggedItem === ownProps.id,
+        canBePicked: item.canBePicked,
+        label: item.label
     }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+    const item = getItem(ownProps.id);
+
     return {
         handleDragStart: (e) => {
-            dispatch(actions.startDragging(this.ownProps.id));
+            dispatch(actions.startDragging(ownProps.id));
         },
         handleDragEnd: (e) => {
             dispatch(actions.stopDragging());
         },
         handleDragEnter: (e) => {
-            dispatch(actions.startDragOver(this.ownProps.id));
+            dispatch(actions.startDragOver(ownProps.id));
             e.stopPropagation();
         },
         handleDragLeave: (e) => {
@@ -31,13 +36,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(actions.stopDragOver());
         },
         handleMouseEnter: (e) => {
-            dispatch(actions.startHover(this.ownProps.id));
+            dispatch(actions.startHover(ownProps.id));
         },
         handleMouseLeave: (e) => {
             dispatch(actions.stopHover());
         },
         handleClick: (e) => {
-            dispatch(actions.examine(this.ownProps.id))
+            dispatch(actions.examine(item.description))
         }
     }
 }
@@ -45,4 +50,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 const Item = connect(
     mapStateToProps,
     mapDispatchToProps
-)(ItemComponent);
+)(ItemComponent)
+
+export default Item

@@ -1,12 +1,17 @@
 import { connect }          from 'react-redux';
-import actions              from '../actions/description'
-import DescriptionComponent from './description';
-
+import DescriptionComponent from '../components/description.jsx';
+import { getItem }          from '../managers/item';
 
 const mapStateToProps = (state, ownProps) => {
-    memory: state.memory
+    state = state;
+
+    return {
+        memory: state.game.memory
+    }
 }
 
 const Description = connect(
     mapStateToProps
-)(DescriptionComponent);
+)(DescriptionComponent)
+
+export default Description

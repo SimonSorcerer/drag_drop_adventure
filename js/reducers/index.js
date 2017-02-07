@@ -4,9 +4,9 @@ import gameReducers        from './game'
 import inventoryReducers   from './inventory'
 
 const reducers = combineReducers({
-  dragReducers,
-  gameReducers,
-  inventoryReducers
+  drag: dragReducers,
+  game: gameReducers,
+  inventory: inventoryReducers
 })
 
 export default reducers

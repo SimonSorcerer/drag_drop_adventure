@@ -10,7 +10,10 @@ function get(id) {
 
     if (item) {
         getDescription(item);
-        return item;
+        return {
+            id,
+            ...item
+        };
     }
 
     throw 'Requested item does not exist in the item cache!';

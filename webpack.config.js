@@ -8,19 +8,22 @@ module.exports = {
             {
                 test: /\.css$/,
                 include: /styles/,
-                loader: 'style!css'
+                use: [
+                    { loader: "style-loader" },
+                    { loader: "css-loader" }
+                ]
             },
             {
                 test: /\.jsx?$/,
                 include: /js/,
-                loader: 'babel',
+                loader: 'babel-loader',
                 query: {
                     presets: ['react', 'es2015', 'babel-preset-stage-2']
                 }
             },
             {
                 test: /\.json$/,
-                loader: 'json'
+                loader: 'json-loader'
             }
         ]
     },

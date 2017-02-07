@@ -1,21 +1,14 @@
-import { Component } from 'react';
-import Item          from './item.jsx';
-import ClassHelper   from '../helpers/class';
+import React, { Component } from 'react';
+import Item                 from '../containers/item';
+import ClassHelper          from '../helpers/class';
 
 export default class Inventory extends Component {
     writeContent() {
-        var items = this.props.items,
-            content = [];
-
-        for (var i = 0; i < items.length; i++) {
-            content.push(<Item key={ items[i] } id={ items[i] } />);
-        }
-
-        return content;
+        return this.props.items.map((item) => { return <Item key={ item } item={ item } /> })
     }
 
     render() {
-        var classHelper = ClassHelper.build(['items']);
+        const classHelper = ClassHelper.build(['items']);
 
         if (this.props.draggedOver) {
             classHelper.add('draggedOver');

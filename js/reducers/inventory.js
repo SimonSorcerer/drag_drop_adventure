@@ -3,9 +3,7 @@ const defaultState = {
     isDraggedOver: false
 }
 
-const inventoryReducers = (state = {}, action) => {
-    state = state || defaultState;
-
+const inventoryReducers = (state = defaultState, action) => {
     switch (action.type) {
         case 'START_DRAGGING_OVER':
             return {

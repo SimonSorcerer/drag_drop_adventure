@@ -5,7 +5,7 @@ export const startDragging = (id) => {
     }
 }
 
-export const stopDraggingItem = () => {
+export const stopDragging = () => {
     return {
         type: 'STOP_DRAGGING_ITEM'
     }
@@ -24,7 +24,7 @@ export const stopDragOver = () => {
     }
 }
 
-export const startHoverOn = (label) => {
+export const startHover = (label) => {
     return {
         type: 'START_HOVER',
         label

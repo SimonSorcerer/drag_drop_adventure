@@ -15,4 +15,4 @@ render(
         <Game />
     </Provider>,
     document.getElementById('dda-main')
-);
+)
