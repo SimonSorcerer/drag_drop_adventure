@@ -42,7 +42,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(actions.stopHover());
         },
         handleClick: (e) => {
-            dispatch(actions.examine(item.description))
+            dispatch(actions.examine(item.label, item.description))
         }
     }
 }

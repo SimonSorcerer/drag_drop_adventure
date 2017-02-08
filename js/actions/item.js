@@ -37,9 +37,10 @@ export const stopHover = () => {
     }
 }
 
-export const examine = (description) => {
+export const examine = (label, description) => {
     return {
         type: 'EXAMINE_ITEM',
+        label,
         description
     }
 }

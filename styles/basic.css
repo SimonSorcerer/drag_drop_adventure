@@ -116,3 +116,15 @@ body {
     padding-top: 4px;
     padding-bottom: 4px;
 }
+
+.record.old {
+    color: #666;
+}
+
+.record .prefix {
+    color: yellowgreen;
+}
+
+.record.old .prefix {
+    color: #999;
+}

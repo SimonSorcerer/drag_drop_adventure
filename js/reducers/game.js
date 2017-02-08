@@ -1,3 +1,5 @@
+import { lookAt } from '../helpers/transcription'
+
 const defaultState = {
     memory: [],
     hoveredItem: null
@@ -16,11 +18,14 @@ const gameReducers = (state = defaultState, action) => {
                 hoveredItem: null
             }
         case 'EXAMINE_ITEM':
-            if (action.description) {
-                return {
-                    ...state,
-                    memory: [action.description, ...state.memory]
-                }
+            const newRecord = {
+                prefix: lookAt(action.label),
+                description: action.description
+            }
+
+            return {
+                ...state,
+                memory: [newRecord, ...state.memory]
             }
             return state
         default:
