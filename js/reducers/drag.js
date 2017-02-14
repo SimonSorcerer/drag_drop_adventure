@@ -1,33 +1,35 @@
-const defaultState = {
-    draggedItem: null,
-    draggedOverItem: null
-}
+const dragReducers = (state, action) => {
+    const subState = state.drag;
 
-const dragReducers = (state = defaultState, action) => {
     switch (action.type) {
         case 'START_DRAGGING_ITEM':
             return {
-                ...state,
+                ...subState,
                 draggedItem: action.id
             }
         case 'STOP_DRAGGING_ITEM':
             return {
-                ...state,
+                ...subState,
                 draggedItem: null
             }
         case 'START_DRAGGING_OVER_ITEM':
             return {
-                ...state,
+                ...subState,
                 draggedOverItem: action.id
             }
         case 'STOP_DRAGGING_OVER_ITEM':
             return {
-                ...state,
+                ...subState,
                 draggedOverItem: null
             }
         default:
-            return state
+            return subState
     }
 }
 
-export default dragReducers
+export default (state, action) => {
+    return {
+        ...state,
+        drag: dragReducers(state, action)
+    }
+}

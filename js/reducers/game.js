@@ -1,20 +1,17 @@
 import { lookAt } from '../helpers/transcription'
 
-const defaultState = {
-    memory: [],
-    hoveredItem: null
-}
+const gameReducers = (state, action) => {
+    const subState = state.game;
 
-const gameReducers = (state = defaultState, action) => {
     switch (action.type) {
         case 'START_HOVER':
             return {
-                ...state,
+                ...subState,
                 hoveredItem: action.id
             }
         case 'STOP_HOVER':
             return {
-                ...state,
+                ...subState,
                 hoveredItem: null
             }
         case 'EXAMINE_ITEM':
@@ -24,13 +21,17 @@ const gameReducers = (state = defaultState, action) => {
             }
 
             return {
-                ...state,
-                memory: [newRecord, ...state.memory]
+                ...subState,
+                memory: [newRecord, ...subState.memory]
             }
-            return state
         default:
-            return state
+            return subState
     }
 }
 
-export default gameReducers
+export default (state, action) => {
+    return {
+        ...state,
+        game: gameReducers(state, action)
+    }
+}

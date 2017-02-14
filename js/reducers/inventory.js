@@ -1,29 +1,31 @@
-const defaultState = {
-    items: new Set(['passport']),
-    isDraggedOver: false
-}
+const inventoryReducers = (state, action) => {
+    const subState = state.inventory
 
-const inventoryReducers = (state = defaultState, action) => {
     switch (action.type) {
         case 'START_DRAGGING_OVER':
             return {
-                ...state,
+                ...subState,
                 isDraggedOver: true
             }
         case 'STOP_DRAGGING_OVER':
             return {
-                ...state,
+                ...subState,
                 isDraggedOver: false
             }
         case 'DROP_ITEM':
             return {
-                ...state,
-                items: state.items.add(action.id),
+                ...subState,
+                items: subState.items.add(action.id),
                 isDraggedOver: false
             }
         default:
-            return state
+            return subState
     }
 }
 
-export default inventoryReducers
+export default (state, action) => {
+    return {
+        ...state,
+        inventory: inventoryReducers(state, action)
+    }
+}
