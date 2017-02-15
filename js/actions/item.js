@@ -45,6 +45,12 @@ export const examine = (label, description) => {
     }
 }
 
+export const dropItem = () => {
+    return {
+        type: 'DROP_ITEM'
+    }
+}
+
 export default {
     startDragging,
     stopDragging,
@@ -52,5 +58,6 @@ export default {
     stopDragOver,
     startHover,
     stopHover,
-    examine
+    examine,
+    dropItem
 }

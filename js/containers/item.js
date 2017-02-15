@@ -33,7 +33,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             e.stopPropagation();
         },
         handleDrop: (e) => {
-            dispatch(actions.stopDragOver());
+            dispatch(actions.dropItem());
         },
         handleMouseEnter: (e) => {
             dispatch(actions.startHover(ownProps.id));
