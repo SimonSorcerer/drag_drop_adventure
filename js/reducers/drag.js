@@ -1,4 +1,4 @@
-const dragReducers = (state, action) => {
+export default (state, action) => {
     const subState = state.drag;
 
     switch (action.type) {
@@ -24,12 +24,5 @@ const dragReducers = (state, action) => {
             }
         default:
             return subState
-    }
-}
-
-export default (state, action) => {
-    return {
-        ...state,
-        drag: dragReducers(state, action)
     }
 }

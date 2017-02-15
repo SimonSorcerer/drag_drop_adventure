@@ -1,6 +1,6 @@
 import { lookAt } from '../helpers/transcription'
 
-const gameReducers = (state, action) => {
+export default (state, action) => {
     const subState = state.game;
 
     switch (action.type) {
@@ -24,14 +24,8 @@ const gameReducers = (state, action) => {
                 ...subState,
                 memory: [newRecord, ...subState.memory]
             }
+            return subState
         default:
             return subState
-    }
-}
-
-export default (state, action) => {
-    return {
-        ...state,
-        game: gameReducers(state, action)
     }
 }

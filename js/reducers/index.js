@@ -1,4 +1,3 @@
-//import { combineReducers } from 'redux'
 import dragReducers        from './drag'
 import gameReducers        from './game'
 import inventoryReducers   from './inventory'
@@ -20,17 +19,17 @@ const defaultState = {
 
 const combineReducers = (reducers) => {
     return (state = defaultState, action) => {
-        for (let subReducers of reducers) {
-            state = subReducers(state, action)
+        for (let key in reducers) {
+            state[key] = reducers[key](state, action)
         }
-        return state
+        return {...state}
     }
 }
 
-const reducers = combineReducers([
-  dragReducers,
-  gameReducers,
-  inventoryReducers
-])
+const reducers = combineReducers({
+  drag: dragReducers,
+  game: gameReducers,
+  inventory: inventoryReducers
+})
 
 export default reducers

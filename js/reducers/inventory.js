@@ -1,4 +1,4 @@
-const inventoryReducers = (state, action) => {
+export default (state, action) => {
     const subState = state.inventory
 
     switch (action.type) {
@@ -13,19 +13,15 @@ const inventoryReducers = (state, action) => {
                 isDraggedOver: false
             }
         case 'DROP_ITEM':
-            return {
-                ...subState,
-                items: subState.items.add(action.id),
-                isDraggedOver: false
+            if (subState.isDraggedOver) {
+                return {
+                    ...subState,
+                    items: subState.items.add(action.id),
+                    isDraggedOver: false
+                }
             }
+            return subState
         default:
             return subState
-    }
-}
-
-export default (state, action) => {
-    return {
-        ...state,
-        inventory: inventoryReducers(state, action)
     }
 }
