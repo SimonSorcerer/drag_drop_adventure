@@ -28,12 +28,12 @@ export default (state, action) => {
             }
             return subState
         case 'DROP_ITEM':
-            const item1 = getItem(state.drag.draggedItem);
-            const item2 = getItem(state.drag.draggedOverItem);
-            const interaction = getInteraction(item1.id, item2.id);
+            const itemA = getItem(state.drag.draggedItem);
+            const itemB = getItem(state.drag.draggedOverItem);
+            const interaction = getInteraction(itemA.id, itemB.id);
 
             newRecord = {
-                prefix: useWith(item1.label, item2.label),
+                prefix: interaction.prefix || useWith(itemA.label, itemB.label),
                 description: interaction.text
             }
 
