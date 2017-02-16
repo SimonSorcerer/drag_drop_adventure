@@ -1,5 +1,4 @@
-import items        from '../../data/items.json';
-import interactions from '../../data/interactions.json'
+import items from '../../data/items.json'
 
 const getDescription = (item) => {
     item.description = item.description || 'There is nothing special about the ' + item.label + '.';
@@ -18,10 +17,4 @@ export const getItem = (id) => {
     }
 
     throw 'Requested item does not exist in the item cache!';
-}
-
-export const getInteraction = (id1, id2) => {
-    const foundInteraction = interactions.find(x => x.keys.includes(id1) && x.keys.includes(id2));
-
-    return foundInteraction || { text: 'You cannot use these two items :(' };
 }

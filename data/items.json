@@ -10,7 +10,12 @@
     },
     "padlock": {
         "label": "padlock",
-        "description": "Very simple but sturdy padlock."
+        "description": "Very simple but sturdy padlock. It is locked.",
+        "states": {
+            "open": {
+                "description": "Very simple but sturdy padlock. It is now open."
+            }
+        }
     },
     "door": {
         "label": "door",

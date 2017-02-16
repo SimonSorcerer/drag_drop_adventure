@@ -1,5 +1,6 @@
-import { lookAt, useWith }         from '../helpers/transcription'
-import { getItem, getInteraction } from '../managers/item'
+import { lookAt, useWith } from '../helpers/transcription'
+import { getItem }         from '../managers/item'
+import { interact }        from '../managers/interaction'
 
 export default (state, action) => {
     const subState = state.game;
@@ -30,7 +31,7 @@ export default (state, action) => {
         case 'DROP_ITEM':
             const itemA = getItem(state.drag.draggedItem);
             const itemB = getItem(state.drag.draggedOverItem);
-            const interaction = getInteraction(itemA.id, itemB.id);
+            const interaction = interact(itemA.id, itemB.id);
 
             newRecord = {
                 prefix: interaction.prefix || useWith(itemA.label, itemB.label),

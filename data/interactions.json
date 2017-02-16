@@ -2,6 +2,12 @@
     {
         "keys": ["padlock_key", "padlock"],
         "prefix": "Open padlock with key",
-        "text": "You hear a small click as you turn the key and and the padlock opens."
+        "text": "You hear a small click as you turn the key and and the padlock opens.",
+        "effects": {
+            "mutate": {
+                "item": "padlock",
+                "state": "open"
+            }
+        }
     }
 ]
