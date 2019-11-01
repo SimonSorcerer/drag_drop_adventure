@@ -1,5 +1,5 @@
-import items        from '../../data/items.json';
-import interactions from '../../data/interactions.json'
+import items        from '../data/items.json';
+import interactions from '../data/interactions.json'
 
 const getDescription = (item) => {
     item.description = item.description || 'There is nothing special about the ' + item.label + '.';

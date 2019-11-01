@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Item  from '../containers/item';
 
-module.exports = React.createClass({
-    render: function () {
+export default class Location extends Component {
+    render() {
         return <div className='location'>
             This is a description of a location with some <Item id='padlock_key' /> and another random <Item id='item' />.
             These items can be picked up, but there is also a stationary <Item id='door' /> with a <Item id='padlock' /> on it.
@@ -15,4 +15,4 @@ module.exports = React.createClass({
             </ul>
         </div>;
     }
-});
+};
